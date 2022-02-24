@@ -10,4 +10,6 @@ jobs:
             tmdb_url_trending: 'https://api.themoviedb.org/3/trending/movie/week'
         steps:
             - name: Get trending movies
-              run: curl -s --url $tmdb_url_trending?api_key=$tmdb_apikey
+              run: |
+                curl -s --url $tmdb_url_trending?api_key=$tmdb_apikey $1 \
+                echo $1.data
