@@ -3,10 +3,11 @@ on:
     push:
         branches: develop
 jobs:
-    test:
+    trending_movies:
         runs-on: ubuntu-latest
+        env:
+            tmdb_apikey: ${{ secrets.TMDB_APIKEY }}
+            tmdb_url_trending: 'https://api.themoviedb.org/3/trending/movie/week'
         steps:
-            - name: Say something
-              run: |
-                echo "A little less conversation"
-                echo "A little more action"
+            - name: Get trending movies
+              run: curl -s --url $tmdb_url_trending?api_key=$tmdb_apikey
